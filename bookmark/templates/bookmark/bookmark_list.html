@@ -1,0 +1,51 @@
+<!--
+템플릿 문법
+{ % % } > 기능 태그
+
+{ % tag % } // 시작
+{ % endtag % } // 끝
+
+{ { } } > 출력 태그
+-->
+
+{% extends 'base.html' %}
+{% block title %}
+    Bookmark List
+{% endblock %}
+
+{% block content %}
+    <div class="btn-group d-block text-right mb-1" role="group">
+        <a href="{% url 'bookmark:write' %}" class="btn btn-info">Add Bookmark</a>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Site</th>
+                <th scope="col">URL</th>
+                <th scope="col">Modify</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bookmark in object_list %}
+                <tr>
+                    <td>
+                        {{forloop.counter}}
+                    </td>
+                    <td>
+                        <a href="{% url 'bookmark:detail' pk=bookmark.id %}">
+                            {{bookmark.site_name}}
+                        </a>
+                    </td>
+                    <td>
+                        {{bookmark.url}}
+                    </td>
+                    <td><a href="{% url 'bookmark:update' pk=bookmark.id %}" class="btn btn-success btn-sm">Modify</a></td>
+                    <td><a href="{% url 'bookmark:delete' bookmark.id %}" class="btn btn-danger btn-sm">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
