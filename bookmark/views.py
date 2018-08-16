@@ -28,7 +28,7 @@ class BookmarkCreateView(CreateView):
     # 입력받을 필드 목록
     fields = ['site_name','url']
     # get_absulte_url 를 호출 아래가 없으면
-    success_url = reverse_lazy('list')
+    success_url = reverse_lazy('bookmark:list')
 
 
 class BookmarkUpdateView(UpdateView):
