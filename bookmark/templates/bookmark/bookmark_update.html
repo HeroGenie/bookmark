@@ -1,9 +1,16 @@
 {% extends 'base.html' %}
-{% block title %}Delete Confirm Bookmark{% endblock %}
+{% block title %}Update Bookmark{% endblock %}
 {% block content %}
 
-{{object.site_name}}
-<br>
-{{object.url}}
+<!--
+    csrf_token : 보안에 관련된 기능 / 이 토큰이 없으면 장고는 어떤 입력도 받아서 처리 안함.
+    form.as_p : 입력받는 폼 / 폼태그 목록으로 나온걸 p태그로 보여줄꺼임
+-->
+
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class="btn btn-success" value="update" />
+    </form>
 
 {% endblock %}
